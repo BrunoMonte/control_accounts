@@ -1,18 +1,13 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class SpendingsController {
-  
+export default class CategoriesController {
   public async index({}: HttpContextContract) {}
+
 
   public async store({ request }: HttpContextContract) {
     const data = request.only([
-      'Id',
       'Nome',
-      'Categoria',
-      'Vencimento',
-      'Valor',
-      'Parcelamento',
-      'Status'
+      'Id'
     ])
     console.log(data)
   }

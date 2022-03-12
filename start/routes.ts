@@ -20,8 +20,9 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.post('/category', 'CategoryController.create')
-Route.post('/spending', 'SpendingsController.create')
+Route.post('/category', 'CategoriesController.store')
+Route.post('/spendings', 'SpendingsController.store')
+Route.post('/spendings/list', 'SpendingsController.index')
 
 
 
