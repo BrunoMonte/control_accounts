@@ -25,16 +25,16 @@ export default class CategoriesController {
   public async update({}: HttpContextContract) {}
 
   public async destroy({ params, response }: HttpContextContract) {
-    const { id } = ({ id: Number } = params)
+    const id = params.id
 
-    const spending: any = await Category.find(id)
+    const categories: any = await Category.find(id)
 
-    if (!spending) {
-      return response.notFound({ message: 'Não existe categoria com esse id !' })
+    if (!categories) {
+      return response.notFound({ message: 'Não existe conta por esse id !' })
     }
 
-    await spending.delete()
+    await categories.delete()
 
-    return response.ok({ message: 'Categoria deletada com sucesso !' })
+    return response.status(200).json({ message: 'Conta delatada com sucesso' })
   }
 }
