@@ -24,8 +24,10 @@ Status: em andamento.
     
     - Faz verificação se ficou faltando alguma dependencia no projeto.
 
-### E para o start da aplicação: node ace serve --watch
+### E para o start da aplicação: 
+
+    - node ace serve --watch
 
 ## Para utilização das rotas
 
-- Fazendo os teste utilizando o POSTMAN.
+    - Fazendo os teste utilizando o POSTMAN.
