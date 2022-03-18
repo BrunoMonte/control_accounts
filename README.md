@@ -6,14 +6,22 @@ Status: em andamento.
 
 ## Iniciando repositório em sua máquina
 
-### No cmd seguinte comando com link do repositório: https://github.com/BrunoMonte/Controle_Contas.git git clone
+### No cmd seguinte comando com link do repositório:
 
-### Na pasta do arquivo: Npm install
+    - https://github.com/BrunoMonte/Controle_Contas.git git clone
 
-### Próximo passo : node ace migration:run
+### Na pasta do arquivo: 
+    - Npm install
+
+### Próximo passo : 
+
+    - node ace migration:run
+
     - Para fazer as config das migrations do database do MySql.
 
-### Em caso de return de erros da migration, seguinte comando : yarn
+### Em caso de return de erros da migration, 
+    - seguinte comando : yarn
+    
     - Faz verificação se ficou faltando alguma dependencia no projeto.
 
 ### E para o start da aplicação: node ace serve --watch
