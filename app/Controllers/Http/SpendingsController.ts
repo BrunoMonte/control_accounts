@@ -34,17 +34,13 @@ export default class SpendingsController {
   public async show({ params, response }) {
     const { status }: { status: String } = params
 
-    const spending: any = await Spending.find({ status: status })
+    const spending: any = await Spending.find(status)
     if (!spending) {
       return response.notFound({ message: 'Nenhuma conta encontrada com esse status !' })
     }
 
     return response.status(200).json({ spending })
   }
-
-  public async edit({}: HttpContextContract) {}
-
-  public async update({}: HttpContextContract) {}
 
   public async destroy({ params, response }: HttpContextContract) {
     const id = params.id

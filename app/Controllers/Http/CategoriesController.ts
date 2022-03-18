@@ -18,11 +18,16 @@ export default class CategoriesController {
     return category
   }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ params, response }) {
+    const { id }: { id: Number } = params
 
-  public async edit({}: HttpContextContract) {}
+    const categories: any = await Category.find(id)
+    if (!categories) {
+      return response.notFound({ message: 'Nenhuma categoria encontrada com esse id !' })
+    }
 
-  public async update({}: HttpContextContract) {}
+    return response.status(200).json({ categories })
+  }
 
   public async destroy({ params, response }: HttpContextContract) {
     const id = params.id
