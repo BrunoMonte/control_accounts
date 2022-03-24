@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Spending from 'App/Models/Spending'
+import Spending from '../../Models/Spending'
 
 export default class SpendingsController {
   public async index({ response }: HttpContextContract) {
@@ -8,38 +8,39 @@ export default class SpendingsController {
   }
 
   public async create({ request, response }: HttpContextContract) {
-    const { nome, categoria, vencimento, valor, parcelamento, status } = request.only([
-      'nome',
-      'categoria',
-      'vencimento',
-      'valor',
-      'parcelamento',
-      'status',
-    ])
+    const { nome, categoria, vencimento, valor, parcelamento, status } = request.all()
+    const spending = new Spending()
 
-    const spending = await Spending.create({
-      nome,
-      categoria,
-      vencimento,
-      valor,
-      parcelamento,
-      status,
-    })
+    spending.nome = nome
+    spending.categoria = categoria
+    spending.vencimento = vencimento
+    spending.valor = valor
+    spending.parcelamento = parcelamento
+    spending.status = status
 
-    if (!categoria) return response.status(400).json({ message: 'Infome o nome da categoria' })
+    await spending.save()
 
-    return spending
+    if (!categoria) response.status(401).json({ message: 'Informe o campo de categoria ! ' })
+
+    return response.status(200).json({ message: 'Conta criada com sucesso !' })
   }
 
   public async show({ params, response }) {
-    const { status }: { status: String } = params
+    const { id } = params
+    const spending = await Spending.find(id)
 
-    const spending: any = await Spending.find(status)
-    if (!spending) {
-      return response.notFound({ message: 'Nenhuma conta encontrada com esse status !' })
-    }
+    return response.json(spending)
+  }
 
-    return response.status(200).json({ spending })
+  public async update({ params, request, response }: HttpContextContract) {
+    const { id } = params
+    const { nome, categoria } = request.all()
+    const spending = await Spending.findOrFail(id)
+    spending.nome = nome || spending.nome
+    spending.categoria = categoria || spending.categoria
+
+    await spending.save()
+    return response.json(spending)
   }
 
   public async destroy({ params, response }: HttpContextContract) {

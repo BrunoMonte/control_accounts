@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Category from 'App/Models/Category'
+import Category from '../../Models/Category'
 
 export default class CategoriesController {
   public async index({ response }: HttpContextContract) {
@@ -8,14 +8,15 @@ export default class CategoriesController {
   }
 
   public async create({ request, response }: HttpContextContract) {
-    const { nome } = request.only(['nome'])
-    const category = await Category.create({
-      nome,
-    })
+    const { nome } = request.all()
+    const categories = new Category()
+    categories.nome = nome
 
-    if (!nome) return response.status(400).json({ message: 'Informe o nome da categoria !' })
+    await categories.save()
 
-    return category
+    if (!nome) response.status(401).json({ message: ' Informe o campo nome !' })
+
+    return response.status(200).json({ message: 'Categoria criada com sucesso !' })
   }
 
   public async show({ params, response }) {
