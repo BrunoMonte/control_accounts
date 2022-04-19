@@ -9,7 +9,7 @@ Status: em andamento.
 
 ### No cmd seguinte comando com link do repositório:
 
-    - https://github.com/BrunoMonte/Controle_Contas.git git clone
+    - git clone https://github.com/BrunoMonte/Controle_Contas.git
 
 ### Na pasta do arquivo: 
     - Npm install
