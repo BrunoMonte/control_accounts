@@ -21,7 +21,7 @@ Status: em andamento.
     - Para fazer as config das migrations do database do MySql.
 
 ### Em caso de return de erros da migration, 
-    - seguinte comando : yarn
+    - seguinte comando : npm install
     
     - Faz verificação se ficou faltando alguma dependencia no projeto.
 
