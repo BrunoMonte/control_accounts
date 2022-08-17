@@ -1,6 +1,6 @@
 import Category from '../../../Models/Category'
 
-export default class ShowCategoriesController {
+export default class FindCategoriesController {
   public async show({ params, response }) {
     const { id }: { id: Number } = params
 
